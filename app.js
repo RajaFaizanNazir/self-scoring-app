@@ -5,7 +5,7 @@ const cors = require("cors");
 const serverless = require("serverless-http");
 require("dotenv").config();
 /********************************************************************************* */
-const HttpError = require(`${__dirname}/util/http-error`);
+const HttpError = require(`./util/http-error`);
 /********************************************************************************* */
 const app = express();
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -14,14 +14,15 @@ app.use(cors());
 /********************************************************************************* */
 /**************** Routes **************** */
 /********************************************************************************* */
-app.use("/api/email", require(`${__dirname}/routes/email-routes`));
+app.use("/api/email", require(`./routes/email-routes`));
 /********************************************************************************* */
 
 /********************************************************************************* */
 app.use((req, res, next) => {
   console.log("Could not find this route");
-  const error = new HttpError("Invalid Link, Could not find this route!", 404);
-  throw error;
+  return res
+    .status(404)
+    .json({ message: "Invalid Link, Could not find this route!" });
 });
 /********************************************************************************* */
 app.listen(process.env.PORT || 5000, () => {
