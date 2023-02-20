@@ -20,9 +20,9 @@ app.use("/api/email", require(`./routes/email-routes`));
 /********************************************************************************* */
 app.use((req, res, next) => {
   console.log("Could not find this route");
-  return res
-    .status(404)
-    .json({ message: "Invalid Link, Could not find this route!" });
+  return res.status(404).json({
+    message: `Invalid Link, Could not find this route! \'${req.url}\'`,
+  });
 });
 /********************************************************************************* */
 app.listen(process.env.PORT || 5000, () => {
