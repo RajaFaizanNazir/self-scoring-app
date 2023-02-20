@@ -58,7 +58,7 @@ const generatePDF = async (htmlData, fileId, _to, _subject, _fileName) => {
         } else {
           // await dropBoxUtill.uploadPDFtodropBox(buffer, fileId, timeout);
           if (buffer) {
-            // await uploadPDFtoS3(buffer, fileId);
+            await uploadPDFtoS3(buffer, fileId);
             await emailUtills.sendMailSMTP(
               _to,
               _subject,
