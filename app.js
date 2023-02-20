@@ -5,7 +5,7 @@ const cors = require("cors");
 const serverless = require("serverless-http");
 require("dotenv").config();
 /********************************************************************************* */
-const HttpError = require("./util/http-error");
+const HttpError = require(`${__dirname}/util/http-error`);
 /********************************************************************************* */
 const app = express();
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -14,7 +14,7 @@ app.use(cors());
 /********************************************************************************* */
 /**************** Routes **************** */
 /********************************************************************************* */
-app.use("/api/email", require("./routes/email-routes"));
+app.use("/api/email", require(`${__dirname}/routes/email-routes`));
 /********************************************************************************* */
 
 /********************************************************************************* */
